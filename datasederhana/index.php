@@ -1,4 +1,11 @@
-<?php
+
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
+}
+
 include "koneksi.php";
 ?>
 
@@ -8,6 +15,8 @@ include "koneksi.php";
     <title>Data Siswa</title>
 </head>
 <body>
+
+<p>Login sebagai: <b><?= htmlspecialchars($_SESSION['username']); ?></b> | <a href="logout.php">Logout</a></p>
 
 <h2>Input Data Siswa</h2>
 
