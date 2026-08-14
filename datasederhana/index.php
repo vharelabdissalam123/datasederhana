@@ -1,4 +1,4 @@
-
+<?php
 session_start();
 
 if (!isset($_SESSION['username'])) {
@@ -7,6 +7,8 @@ if (!isset($_SESSION['username'])) {
 }
 
 include "koneksi.php";
+
+$isAdmin = ($_SESSION['role'] === 'admin');
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +18,13 @@ include "koneksi.php";
 </head>
 <body>
 
-<p>Login sebagai: <b><?= htmlspecialchars($_SESSION['username']); ?></b> | <a href="logout.php">Logout</a></p>
+<p>
+    Login sebagai: <b><?= htmlspecialchars($_SESSION['username']); ?></b>
+    (<?= htmlspecialchars($_SESSION['role']); ?>)
+    | <a href="logout.php">Logout</a>
+</p>
+
+<?php if ($isAdmin) { ?>
 
 <h2>Input Data Siswa</h2>
 
@@ -34,6 +42,13 @@ include "koneksi.php";
 </form>
 
 <hr>
+
+<?php } else { ?>
+
+<p><i>Kamu login sebagai user biasa, hanya bisa melihat data.</i></p>
+<hr>
+
+<?php } ?>
 
 <h2>Data Siswa</h2>
 
