@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($user && $password === $user['password']) {
         $_SESSION['username'] = $user['username'];
+        $_SESSION['role']     = $user['role'];
         header("Location: index.php");
         exit;
     } else {
@@ -42,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <button type="submit">Login</button>
 </form>
+
+<p>Belum punya akun? <a href="register.php">Daftar di sini</a></p>
 
 </body>
 </html>
